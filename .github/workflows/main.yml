@@ -1,32 +1,32 @@
-name: .NET-Console-App
+  name: .NET-Console-App
 
-on:  
-  push:  
-    branches:  
-      - main  
-  workflow_dispatch:  # Allows manual triggering from GitHub UI
+  on:  
+    push:  
+      branches:  
+        - main  
+    workflow_dispatch:  # Allows manual triggering from GitHub UI
 
-jobs:  
-  build:  
-    runs-on: ubuntu-latest  
-    steps:  
-      - uses: actions/checkout@v4  
-      - name: run a sample  
-        run: echo GitDemo  
-        
-      - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-              name: build-artifacts
-              path: |
-                ${{ github.workspace }}/bin/Release/
-                ${{ github.workspace }}/publish/
-              retention-days: 7 
-  deploy:
-      runs-on: ubuntu-latest
-
-      steps:
-        - uses: actions/download-artifact@v4
+  jobs:  
+    build:  
+      runs-on: ubuntu-latest  
+      steps:  
+        - uses: actions/checkout@v4  
+        - name: run a sample  
+          run: echo GitDemo  
+          
+        - name: Upload Build Artifacts
+          uses: actions/upload-artifact@v4
           with:
-            name: build-artifact
-            path: ${{ github.workspace }}    
+                name: build-artifacts
+                path: |
+                  ${{ github.workspace }}/bin/Release/
+                  ${{ github.workspace }}/publish/
+                retention-days: 7 
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+          - uses: actions/download-artifact@v4
+            with:
+              name: build-artifact
+              path: ${{ github.workspace }}    
