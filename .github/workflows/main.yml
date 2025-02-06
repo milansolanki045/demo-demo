@@ -1,14 +1,14 @@
-name: demo-action
+name: .NET-Console-App
 
 on:
   push:
-    branches: 
-      -main
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps: 
-      - uses: action/checkout@v4
-      - name : run a sample
-        run: echo hello world 
+    steps:
+      - uses: actions/checkout@v4
+      - name: run a sample
+        run: echo GitDemo
