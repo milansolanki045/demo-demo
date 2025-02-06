@@ -1,14 +1,15 @@
 name: .NET-Console-App
 
-on:
-  push:
-    branches:
-      - main
+on:  
+  push:  
+    branches:  
+      - main  
+  workflow_dispatch:  # Allows manual triggering from GitHub UI
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: run a sample
-        run: echo GitDemo
+jobs:  
+  build:  
+    runs-on: ubuntu-latest  
+    steps:  
+      - uses: actions/checkout@v4  
+      - name: run a sample  
+        run: echo GitDemo  
