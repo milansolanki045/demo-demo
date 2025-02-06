@@ -1,32 +1,35 @@
-  name: .NET-Console-App
+name: demo-action
 
-  on:  
-    push:  
-      branches:  
-        - main  
-    workflow_dispatch:  # Allows manual triggering from GitHub UI
+on:
+  issues:
+    types: opened 
 
-  jobs:  
-    build:  
-      runs-on: ubuntu-latest  
-      steps:  
-        - uses: actions/checkout@v4  
-        - name: run a sample  
-          run: echo GitDemo  
-          
-        - name: Upload Build Artifacts
-          uses: actions/upload-artifact@v4
-          with:
-                name: build-artifacts
-                path: |
-                  ${{ github.workspace }}/bin/Release/
-                  ${{ github.workspace }}/publish/
-                retention-days: 7 
-    deploy:
-        runs-on: ubuntu-latest
+    
+  workflow_dispatch:  
+  # push:
+   # branches: main
+   
 
-        steps:
-          - uses: actions/download-artifact@v4
-            with:
-              name: build-artifact
-              path: ${{ github.workspace }}    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v4
+
+     - name: run a sample
+       run: echo Hello,world!
+
+     - name: Upload artifact
+       uses: actions/upload-artifact@v4
+       with:
+         name: build-artifact
+         path: ${{github.workspace}} 
+
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-artifact
+          path: ${{github.workspace}}
