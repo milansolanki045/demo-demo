@@ -21,4 +21,12 @@ jobs:
               path: |
                 ${{ github.workspace }}/bin/Release/
                 ${{ github.workspace }}/publish/
-              retention-days: 7      
+              retention-days: 7 
+  deploy:
+      runs-on: ubuntu-latest
+
+      steps:
+        - uses: action/download-artifact@v4
+          with:
+            name: build-artifact
+            path: ${{github.workspace}}    
