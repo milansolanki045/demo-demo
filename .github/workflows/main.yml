@@ -2,7 +2,8 @@ name: demo-action
 
 on:
   push:
-    branches: main
+    branches: 
+      -main
 
 jobs:
   build:
